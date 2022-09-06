@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/forecastHourlyItemConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginVertical="3dp"
+    android:background="@drawable/forecast_item_bg"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <TextView
+        android:id="@+id/forecastHourlyItemDayOfWeek"
+        android:layout_width="34dp"
+        android:layout_height="0dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:rotation="-90"
+        android:text="@string/dayOfWeek"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/forecastHourlyItemTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/temp"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/forecastHourlyItemDayOfWeek"
+        app:layout_constraintStart_toEndOf="@+id/forecastHourlyItemDayOfWeek"
+        app:layout_constraintTop_toTopOf="@+id/forecastHourlyItemDayOfWeek" />
+
+    <TextView
+        android:id="@+id/forecastHourlyItemWeatherType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/weatherType"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/forecastHourlyItemWeatherIcon"
+        app:layout_constraintTop_toBottomOf="@+id/forecastHourlyItemDate" />
+
+    <TextView
+        android:id="@+id/forecastHourlyItemDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/time"
+        android:textColor="@color/transparent_white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/forecastHourlyItemWeatherIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/forecastHourlyItemHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/humidity"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/forecastHourlyItemPressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/pressure"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forecastHourlyItemHumidity" />
+
+    <ImageView
+        android:id="@+id/forecastHourlyItemWeatherIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/forecastHourlyItemTemp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wi_day_cloudy_windy" />
+
+    <ImageView
+        android:id="@+id/forecastHourlyItemWindSpd"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="6dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/forecastHourlyItemPressure"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wi_wind_beaufort_1" />
+
+    <ImageView
+        android:id="@+id/forecastHourlyItemWindDir"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="-6dp"
+        android:contentDescription="@string/app_name"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/forecastHourlyItemWindSpd"
+        app:layout_constraintEnd_toStartOf="@+id/forecastHourlyItemWindSpd"
+        app:layout_constraintTop_toTopOf="@+id/forecastHourlyItemWindSpd"
+        app:srcCompat="@drawable/ic_wi_wind_deg" />
+</androidx.constraintlayout.widget.ConstraintLayout>

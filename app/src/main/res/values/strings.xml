@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">SEALS Weather</string>
+    <string name="weather_state">Weather state</string>
+    <string name="temp">22°C</string>
+    <string name="tempMax">32°C</string>
+    <string name="tempMin">12°C</string>
+    <string name="humidity">RH: 64%</string>
+    <string name="city">Digoin</string>
+    <string name="pressure">987 hPa</string>
+    <string name="sunrise">07:02</string>
+    <string name="sunset">20:25</string>
+    <string name="weatherType">Overcast</string>
+    <string name="imgDescription">img</string>
+    <string name="tab1">Hourly</string>
+    <string name="tab2">Daily</string>
+    <string name="dayOfWeek">MON</string>
+    <string name="tab_text_1">Hourly</string>
+    <string name="date">08.14</string>
+    <string name="time">12:00</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Light weather widget by SUPERSEAL</string>
+    <string name="tempShort">00°C</string>
+</resources>

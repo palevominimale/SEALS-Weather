@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/forecast_item_bg.xml" value="0.29" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/activity_main.xml" value="0.3578125" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item.xml" value="0.67" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item_bg.xml" value="0.2869791666666667" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item_daily.xml" value="1.1" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item_hourly.xml" value="0.5" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_current.xml" value="0.67" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_daily.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_fragment_current.xml" value="0.5" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_fragment_daily.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_fragment_hourly.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_hourly.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/sample_my_view.xml" value="0.2869791666666667" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/weather_widget.xml" value="0.75" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
