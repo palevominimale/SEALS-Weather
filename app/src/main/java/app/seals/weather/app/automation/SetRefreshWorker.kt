@@ -11,7 +11,7 @@ class SetRefreshWorker(private val context: Context) {
         WorkManager.getInstance(context).cancelAllWork()
         val workRequest = PeriodicWorkRequest
             .Builder(RefreshData::class.java, 15, TimeUnit.MINUTES)
-            .setInitialDelay(15, TimeUnit.SECONDS).build()
+            .setInitialDelay(5, TimeUnit.SECONDS).build()
         WorkManager.getInstance(context).enqueue(workRequest)
     }
 

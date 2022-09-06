@@ -20,4 +20,5 @@
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">Light weather widget by SUPERSEAL</string>
     <string name="tempShort">00°C</string>
+    <string name="intent_refreshing">app.weather.intent.REFRESHING</string>
 </resources>

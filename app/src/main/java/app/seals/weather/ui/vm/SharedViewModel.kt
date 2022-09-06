@@ -1,7 +1,13 @@
 package app.seals.weather.ui.vm
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import app.seals.weather.R
 import app.seals.weather.app.location.GetLocation
 import app.seals.weather.data.models.ForecastItemDomainModel
 import app.seals.weather.data.room.ForecastRepositoryDAO
@@ -19,13 +25,15 @@ class SharedViewModel  (
     private val settingsRepository: SettingsRepositoryInterface,
     private val getLocation: GetLocation,
     private val network: NetworkApiInterface,
-    private val widgetRefresh: WidgetRefresh
+    private val widgetRefresh: WidgetRefresh,
+    context: Context
 ) : ViewModel() {
 
     private var forecastHourly = mutableListOf<ForecastItemDomainModel>()
     private var forecastDaily = mutableListOf<ForecastItemDomainModel>()
     private var forecastCurrent = ForecastItemDomainModel()
     private var isRefreshing = false
+    private val filter = IntentFilter(context.getString(R.string.intent_refreshing))
     var location = settingsRepository.getLocation()
 
     val forecastHourlyLive by lazy { MutableLiveData(forecastHourly) }
@@ -42,6 +50,18 @@ class SharedViewModel  (
         loadCurrent()
         loadHourly()
         loadDaily()
+        setIntentListener(context)
+    }
+
+    private fun setIntentListener(context: Context) {
+        val receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                isRefreshing = intent.getBooleanExtra("isRefreshing", false)
+                isRefreshingLive.postValue(isRefreshing)
+                Log.e("INTENT", "$intent ${intent.extras} ${intent.hashCode()}")
+            }
+        }
+        context.registerReceiver(receiver, filter)
     }
 
     fun refresh() {
