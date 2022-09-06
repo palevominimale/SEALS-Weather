@@ -16,7 +16,7 @@ class App: Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@App)
-            modules(listOf(uiDi, domainDi, dataDi, networkDi, locationDi))
+            modules(listOf(uiDi, domainDi, dataDi, networkDi, locationDi, widgetDi))
         }
         setRefreshWorker.execute()
     }

@@ -9,6 +9,7 @@ import app.seals.weather.app.bootstrap.CheckPermissions
 import app.seals.weather.app.location.GetLocation
 import app.seals.weather.data.room.ForecastRepositoryDAO
 import app.seals.weather.domain.interfaces.NetworkApiInterface
+import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.ui.adapters.MainSectionPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
@@ -20,8 +21,12 @@ class MainActivity : AppCompatActivity() {
         val forecastRepository by inject<ForecastRepositoryDAO>()
         val network by inject<NetworkApiInterface>()
         val getLocation by inject<GetLocation>()
+        val settingsRepository by inject<SettingsRepositoryInterface>()
 
-        val checkPermissions = CheckPermissions(context = applicationContext, activity = this)
+        val checkPermissions = CheckPermissions(
+            context = applicationContext,
+            activity = this,
+            settingsRepository = settingsRepository)
 
         checkPermissions.execute()
         setContentView(R.layout.activity_main)

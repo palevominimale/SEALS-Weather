@@ -10,7 +10,8 @@ val uiDi = module {
             forecastRepository = get(),
             settingsRepository = get(),
             network = get(),
-            getLocation = get()
+            getLocation = get(),
+            widgetRefresh = get()
         )
     }
 }

@@ -33,8 +33,6 @@
             android:exported="false" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="REFRESHED" />
-                <action android:name="SELF_REFRESH" />
             </intent-filter>
 
             <meta-data

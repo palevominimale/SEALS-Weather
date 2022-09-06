@@ -33,6 +33,8 @@ class NetworkRefresh(
         val dateEndFormatted = dateEnd.format(format).toString()
         val timeZone = ZoneId.systemDefault().id
 
+
+
         val urlOpenMeteo = URL("https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,apparent_temperature,surface_pressure,precipitation,weathercode,cloudcover,shortwave_radiation,windspeed_10m,winddirection_10m,windgusts_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_hours&windspeed_unit=ms&timeformat=unixtime&timezone=$timeZone&start_date=$dateStartFormatted&end_date=$dateEndFormatted")
         val openMeteoJSON = urlOpenMeteo.readText()
         putDataFromApiToDB(openMeteoJSON)

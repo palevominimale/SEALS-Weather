@@ -49,6 +49,7 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.4.3'
     implementation 'com.google.devtools.ksp:symbol-processing-api:1.7.0-1.0.6'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
     annotationProcessor 'androidx.room:room-compiler:2.4.3'
     implementation "io.insert-koin:koin-core:$koin_version"

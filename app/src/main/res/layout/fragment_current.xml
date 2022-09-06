@@ -94,7 +94,6 @@
         android:id="@+id/currentWeatherType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="-3dp"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
@@ -102,7 +101,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/currentSunsetIcon"
-        app:layout_constraintStart_toEndOf="@+id/currentCity"
+        app:layout_constraintStart_toEndOf="@+id/currentWindSpd"
         app:layout_constraintTop_toBottomOf="@+id/currentTemp" />
 
     <TextView
@@ -125,7 +124,7 @@
         android:src="@drawable/wi_day_cloudy_windy"
         app:layout_constraintBottom_toBottomOf="@+id/currentTemp"
         app:layout_constraintEnd_toEndOf="@+id/currentWeatherType"
-        app:layout_constraintStart_toStartOf="@+id/currentWeatherType"
+        app:layout_constraintStart_toEndOf="@+id/currentWindSpd"
         app:layout_constraintTop_toTopOf="@+id/currentTempMax" />
 
     <ImageView

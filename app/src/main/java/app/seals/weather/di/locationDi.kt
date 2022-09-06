@@ -13,7 +13,6 @@ val locationDi = module {
     factory {
         GetLocation(
             fusedLocationProviderClient = get(),
-            context = androidContext(),
             settingsRepository = get()
         )
     }

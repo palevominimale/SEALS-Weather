@@ -1,8 +1,10 @@
 package app.seals.weather.data.repos
 
 import android.content.Context
-import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
+import android.location.Location
+import android.location.LocationManager
 import app.seals.weather.data.models.SettingsDataModel
+import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 
 private const val PREFS = "preferences"
 private const val LAT = "lat"
@@ -42,5 +44,31 @@ class SettingsRepository(context: Context) : SettingsRepositoryInterface {
             putBoolean(L_ALLOW, settings.isLocationAllowed)
             putBoolean(L_USE, settings.useLocation)
         }.apply()
+    }
+
+    override fun getLocation(): Location {
+        return Location(LocationManager.GPS_PROVIDER).apply {
+            this.latitude = prefs.getFloat(LAT, 0.0F).toDouble()
+            this.longitude = prefs.getFloat(LON, 0.0F).toDouble()
+        }
+    }
+
+    override fun setLocation(location: Location) {
+        prefs.edit().apply {
+            putFloat(LAT, location.latitude.toFloat())
+            putFloat(LON, location.longitude.toFloat())
+        }
+    }
+
+    override fun getLocationUsageStatus() : Boolean {
+        return prefs.getBoolean(L_USE, false)
+    }
+
+    override fun setLocationAllowed() {
+        prefs.edit().putBoolean(L_USE, true)
+    }
+
+    override fun setLocationDisallowed() {
+        prefs.edit().putBoolean(L_USE, false)
     }
 }

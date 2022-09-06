@@ -1,10 +1,10 @@
 package app.seals.weather.app.automation
 
 import android.content.Context
-import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import app.seals.weather.domain.interfaces.NetworkApiInterface
+import app.seals.weather.widget.WidgetRefresh
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,11 +16,13 @@ class RefreshData(
 ) : Worker(context, parameters) {
 
     private val network: NetworkApiInterface by inject(NetworkApiInterface::class.java)
+    private val widgetRefresh : WidgetRefresh by inject(WidgetRefresh::class.java)
 
     override fun doWork(): Result {
         CoroutineScope(Dispatchers.IO).launch {
             network.execute()
-            Log.e("WRK", "executed")
+        }.invokeOnCompletion {
+            widgetRefresh.execute()
         }
         return Result.success()
     }

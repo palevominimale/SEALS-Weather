@@ -1,7 +1,5 @@
 package app.seals.weather.ui.vm
 
-import android.location.Location
-import android.location.LocationManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.seals.weather.app.location.GetLocation
@@ -11,6 +9,7 @@ import app.seals.weather.domain.interfaces.NetworkApiInterface
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.domain.usecases.forecast.LoadDailyForecastUseCase
 import app.seals.weather.domain.usecases.forecast.LoadHourlyForecastUseCase
+import app.seals.weather.widget.WidgetRefresh
 import kotlinx.coroutines.*
 import org.koin.java.KoinJavaComponent.inject
 import java.time.LocalDateTime
@@ -19,14 +18,15 @@ class SharedViewModel  (
     private val forecastRepository: ForecastRepositoryDAO,
     private val settingsRepository: SettingsRepositoryInterface,
     private val getLocation: GetLocation,
-    private val network: NetworkApiInterface
+    private val network: NetworkApiInterface,
+    private val widgetRefresh: WidgetRefresh
 ) : ViewModel() {
 
     private var forecastHourly = mutableListOf<ForecastItemDomainModel>()
     private var forecastDaily = mutableListOf<ForecastItemDomainModel>()
     private var forecastCurrent = ForecastItemDomainModel()
     private var isRefreshing = false
-    var location = Location(LocationManager.GPS_PROVIDER)
+    var location = settingsRepository.getLocation()
 
     val forecastHourlyLive by lazy { MutableLiveData(forecastHourly) }
     val forecastDailyLive by lazy { MutableLiveData(forecastDaily) }
@@ -39,12 +39,9 @@ class SharedViewModel  (
         by inject(LoadHourlyForecastUseCase::class.java)
 
     init {
-        val s = settingsRepository.get()
-        location.latitude = s.latitude.toDouble()
-        location.longitude = s.longitude.toDouble()
+        loadCurrent()
         loadHourly()
         loadDaily()
-        loadCurrent()
     }
 
     fun refresh() {
@@ -55,13 +52,12 @@ class SharedViewModel  (
                 getLocation.execute()
                 network.execute()
             }.invokeOnCompletion {
+                widgetRefresh.execute()
                 MainScope().launch {
+                    location = settingsRepository.getLocation()
                     loadHourly()
                     loadDaily()
                     loadCurrent()
-                    val s = settingsRepository.get()
-                    location.longitude = s.longitude.toDouble()
-                    location.latitude = s.latitude.toDouble()
                 }
                 isRefreshing = false
                 isRefreshingLive.postValue(isRefreshing)
