@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import app.seals.weather.R
-import app.seals.weather.domain.interfaces.NetworkApiInterface
+import app.seals.weather.domain.usecases.forecast.RefreshForecastUseCase
 import app.seals.weather.widget.WidgetRefresh
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,13 +20,13 @@ class RefreshData(
     parameters: WorkerParameters
 ) : Worker(context, parameters) {
 
-    private val network: NetworkApiInterface by inject(NetworkApiInterface::class.java)
+    private val retrofitNetworkRefresh: RefreshForecastUseCase by inject(RefreshForecastUseCase::class.java)
     private val widgetRefresh : WidgetRefresh by inject(WidgetRefresh::class.java)
 
     override fun doWork(): Result {
         CoroutineScope(Dispatchers.IO).launch {
             sendIntent(true)
-            network.execute()
+            retrofitNetworkRefresh.execute()
         }.invokeOnCompletion {
             sendIntent(false)
             widgetRefresh.execute()

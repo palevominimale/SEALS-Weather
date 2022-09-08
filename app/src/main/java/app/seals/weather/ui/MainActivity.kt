@@ -6,10 +6,10 @@ import androidx.viewpager.widget.ViewPager
 import app.seals.weather.R
 import app.seals.weather.app.bootstrap.CheckData
 import app.seals.weather.app.bootstrap.CheckPermissions
-import app.seals.weather.app.location.GetLocation
+import app.seals.weather.app.location.UpdateLocation
 import app.seals.weather.data.room.ForecastRepositoryDAO
-import app.seals.weather.domain.interfaces.NetworkApiInterface
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
+import app.seals.weather.domain.usecases.forecast.RefreshForecastUseCase
 import app.seals.weather.ui.adapters.MainSectionPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val forecastRepository by inject<ForecastRepositoryDAO>()
-        val network by inject<NetworkApiInterface>()
-        val getLocation by inject<GetLocation>()
+        val retrofitNetworkRefresh by inject<RefreshForecastUseCase>()
+        val updateLocation by inject<UpdateLocation>()
         val settingsRepository by inject<SettingsRepositoryInterface>()
 
         val checkPermissions = CheckPermissions(
@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         checkPermissions.execute()
         setContentView(R.layout.activity_main)
-        getLocation.execute()
-        CheckData(forecastRepository, network).execute()
+        updateLocation.execute()
+        CheckData(forecastRepository, retrofitNetworkRefresh).execute()
         val sectionsPagerAdapter = MainSectionPagerAdapter(this, supportFragmentManager )
         val viewPager = findViewById<ViewPager>(R.id.viewPager).apply {
             adapter = sectionsPagerAdapter

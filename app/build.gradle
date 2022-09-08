@@ -33,28 +33,40 @@ android {
 }
 
 dependencies {
-
-    def koin_version= "3.2.0"
+    //Versions
+    def retrofit = '2.9.0'
+    def koin= '3.2.0'
+    def okhttp = '4.9.2'
+    def lifecycle = '2.5.1'
+    def room = '2.4.3'
+    def coroutines = "1.6.4"
+    //AndroidX
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'androidx.room:room-runtime:2.4.3'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
+    //Google
+    implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.google.devtools.ksp:symbol-processing-api:1.7.0-1.0.6'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'androidx.work:work-runtime-ktx:2.7.1'
-    annotationProcessor 'androidx.room:room-compiler:2.4.3'
-    implementation "io.insert-koin:koin-core:$koin_version"
-    implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
-    implementation "io.insert-koin:koin-android:$koin_version"
-    testImplementation "io.insert-koin:koin-test:$koin_version"
-    kapt 'androidx.room:room-compiler:2.4.3'
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    //RoomDB
+    kapt "androidx.room:room-compiler:$room"
+    annotationProcessor "androidx.room:room-compiler:$room"
+    implementation "androidx.room:room-runtime:$room"
+    //Koin
+    implementation "io.insert-koin:koin-core:$koin"
+    implementation "io.insert-koin:koin-androidx-workmanager:$koin"
+    implementation "io.insert-koin:koin-android:$koin"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+
 }

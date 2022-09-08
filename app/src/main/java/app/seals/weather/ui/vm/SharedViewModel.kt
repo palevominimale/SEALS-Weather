@@ -8,23 +8,25 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.seals.weather.R
-import app.seals.weather.app.location.GetLocation
+import app.seals.weather.app.location.UpdateLocation
 import app.seals.weather.data.models.ForecastItemDomainModel
 import app.seals.weather.data.room.ForecastRepositoryDAO
-import app.seals.weather.domain.interfaces.NetworkApiInterface
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.domain.usecases.forecast.LoadDailyForecastUseCase
 import app.seals.weather.domain.usecases.forecast.LoadHourlyForecastUseCase
+import app.seals.weather.domain.usecases.forecast.RefreshForecastUseCase
 import app.seals.weather.widget.WidgetRefresh
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.inject
 import java.time.LocalDateTime
 
-class SharedViewModel  (
+class SharedViewModel(
     private val forecastRepository: ForecastRepositoryDAO,
     private val settingsRepository: SettingsRepositoryInterface,
-    private val getLocation: GetLocation,
-    private val network: NetworkApiInterface,
+    private val updateLocation: UpdateLocation,
     private val widgetRefresh: WidgetRefresh,
     context: Context
 ) : ViewModel() {
@@ -45,6 +47,8 @@ class SharedViewModel  (
         by inject(LoadDailyForecastUseCase::class.java)
     private val loadHourlyForecastUseCase : LoadHourlyForecastUseCase
         by inject(LoadHourlyForecastUseCase::class.java)
+    private val retrofit : RefreshForecastUseCase
+        by inject(RefreshForecastUseCase::class.java)
 
     init {
         loadCurrent()
@@ -69,8 +73,9 @@ class SharedViewModel  (
             isRefreshing = true
             isRefreshingLive.postValue(isRefreshing)
             CoroutineScope(Dispatchers.IO).launch {
-                getLocation.execute()
-                network.execute()
+                updateLocation.execute()
+//                network.execute()
+                retrofit.execute()
             }.invokeOnCompletion {
                 widgetRefresh.execute()
                 MainScope().launch {

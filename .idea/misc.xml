@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/forecast_item_bg.xml" value="0.29" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2445" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2445" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/main_bg.xml" value="0.2435" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/widget_bg.xml" value="0.2445" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/activity_main.xml" value="0.3578125" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item.xml" value="0.67" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item_bg.xml" value="0.2869791666666667" />

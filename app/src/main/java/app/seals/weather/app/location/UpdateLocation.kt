@@ -6,7 +6,7 @@ import app.seals.weather.data.repos.SettingsRepository
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.runBlocking
 
-class GetLocation(
+class UpdateLocation(
     private val fusedLocationProviderClient: FusedLocationProviderClient,
     private val settingsRepository: SettingsRepository
     ) {

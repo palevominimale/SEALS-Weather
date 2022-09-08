@@ -10,8 +10,7 @@ val uiDi = module {
         SharedViewModel(
             forecastRepository = get(),
             settingsRepository = get(),
-            network = get(),
-            getLocation = get(),
+            updateLocation = get(),
             widgetRefresh = get(),
             context = androidContext()
         )

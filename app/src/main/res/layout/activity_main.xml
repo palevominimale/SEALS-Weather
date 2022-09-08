@@ -4,22 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="-2dp"
     android:background="@color/black"
+    android:foregroundGravity="center"
     tools:context=".ui.MainActivity">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="-3dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/app_name"
+        android:visibility="invisible"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        app:tabSelectedTextColor="@color/white"
-        app:tabIndicatorColor="@color/white"
-        app:tabTextColor="@color/white"
-        app:tabIndicatorGravity="top"
+        android:background="#20000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView">
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView"
+        app:tabIndicatorGravity="top"
+        app:tabTextColor="@color/white">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

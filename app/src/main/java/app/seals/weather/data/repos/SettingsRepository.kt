@@ -71,4 +71,8 @@ class SettingsRepository(context: Context) : SettingsRepositoryInterface {
     override fun setLocationDisallowed() {
         prefs.edit().putBoolean(L_USE, false)
     }
+
+    override fun getForecastDepth(): Int {
+        return prefs.getInt(F_DEPTH, 7)
+    }
 }

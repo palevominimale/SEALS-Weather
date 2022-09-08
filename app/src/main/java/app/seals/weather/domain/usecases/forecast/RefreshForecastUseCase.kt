@@ -1,105 +1,40 @@
-package app.seals.weather.network
+package app.seals.weather.domain.usecases.forecast
 
-import android.util.Log
 import app.seals.weather.R
-import app.seals.weather.data.room.ForecastRepositoryDAO
-import app.seals.weather.domain.interfaces.NetworkApiInterface
-import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.data.models.ForecastItemDomainModel
-import org.json.JSONObject
-import java.lang.Exception
-import java.net.URL
+import app.seals.weather.data.room.ForecastRepositoryDAO
+import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
+import app.seals.weather.network.RetrofitNetworkRefresh
 import java.time.LocalDateTime
-import java.time.ZoneId
 import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 
-class NetworkRefresh(
-    private val forecastRepository: ForecastRepositoryDAO,
-    private val settingsRepository: SettingsRepositoryInterface
-) : NetworkApiInterface {
+class RefreshForecastUseCase (
+    private val retrofit: RetrofitNetworkRefresh,
+    private val settingsRepository: SettingsRepositoryInterface,
+    private val forecastRepository: ForecastRepositoryDAO
+        ) {
 
-
-
-    override suspend fun execute() {
-        val s = settingsRepository.get()
-        val lat = s.latitude
-        val lon = s.longitude
-        val depth = s.forecastDepth*24L
-        val format = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val dateStart = LocalDateTime.now()
-        val dateEnd: LocalDateTime = LocalDateTime.now().plusHours(depth)
-        val dateStartFormatted = dateStart.format(format).toString()
-        val dateEndFormatted = dateEnd.format(format).toString()
-        val timeZone = ZoneId.systemDefault().id
-
-
-
-        val urlOpenMeteo = URL("https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,apparent_temperature,surface_pressure,precipitation,weathercode,cloudcover,shortwave_radiation,windspeed_10m,winddirection_10m,windgusts_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_hours&windspeed_unit=ms&timeformat=unixtime&timezone=$timeZone&start_date=$dateStartFormatted&end_date=$dateEndFormatted")
-        val openMeteoJSON = urlOpenMeteo.readText()
-        putDataFromApiToDB(openMeteoJSON)
-    }
-    
-    private fun putDataFromApiToDB(json: String) {
+    suspend fun execute() {
+        val data = retrofit.execute()
         forecastRepository.clear()
-        val forecast = mutableListOf<ForecastItemDomainModel>()
-        try {
-            val jsonHourly = JSONObject(json).getString("hourly")
-            val jsonDaily = JSONObject(json).getString("daily")
-            val s = settingsRepository.get()
-            val depth = s.forecastDepth*24L
-            for(i in 0..depth.toInt()) {
-
-                val time = JSONObject(jsonHourly).getJSONArray("time")[i]
-                    .toString().toLongOrNull() ?: 0L
-                val temp = JSONObject(jsonHourly).getJSONArray("temperature_2m")[i]
-                    .toString().toFloatOrNull()?.toInt() ?: 0
-                val pressure = JSONObject(jsonHourly).getJSONArray("surface_pressure")[i]
-                    .toString().toFloatOrNull()?.toInt() ?: 0
-                val humidity = JSONObject(jsonHourly).getJSONArray("relativehumidity_2m")[i]
-                    .toString().toFloatOrNull()?.toInt() ?: 0
-                val windSpd = JSONObject(jsonHourly).getJSONArray("windspeed_10m")[i]
-                    .toString().toFloatOrNull()?.toInt() ?: 0
-                val windIconRotation = JSONObject(jsonHourly).getJSONArray("winddirection_10m")[i]
-                    .toString().toFloatOrNull()?.toInt() ?: 0
-                val weatherCode = JSONObject(jsonHourly).getJSONArray("weathercode")[i]
-                    .toString().toIntOrNull() ?: 0
-                val tempMin = JSONObject(jsonDaily).getJSONArray("temperature_2m_min")[i/24]
-                    .toString().toFloatOrNull()?.toInt() ?: 0
-                val tempMax = JSONObject(jsonDaily).getJSONArray("temperature_2m_max")[i/24]
-                    .toString().toFloatOrNull()?.toInt() ?: 0
-                val sunrise = LocalDateTime.ofEpochSecond(
-                    JSONObject(jsonDaily).getJSONArray("sunrise")[i/24].toString().toLong(),
-                    0,
-                    ZoneOffset.UTC).toEpochSecond(ZoneOffset.UTC).toString().toLong()
-                val sunset = LocalDateTime.ofEpochSecond(
-                    JSONObject(jsonDaily).getJSONArray("sunset")[i/24].toString().toLong(),
-                    0,
-                    ZoneOffset.UTC).toEpochSecond(ZoneOffset.UTC).toString().toLong()
-                val weatherIcon = selectWeatherIcon(weatherCode, time)
-                val windIcon = selectWindIcon(windSpd.toFloat())
-                val weatherDescription = selectWeatherType(weatherCode)
-
-                forecast.add(ForecastItemDomainModel(
-                    id = i.toLong(),
-                    time = time,
-                    temp = temp,
-                    tempMin = tempMin,
-                    tempMax = tempMax,
-                    humidity = humidity,
-                    pressure = pressure,
-                    sunset = sunset,
-                    sunrise = sunrise,
-                    weatherType = weatherDescription,
-                    windSpd = windIcon,
-                    windDir = windIconRotation,
-                    weatherIcon = weatherIcon
-                ))
-            }
-        } catch (e: Exception) {
-            Log.println(Log.DEBUG,"NET", e.toString())
+        val depth = settingsRepository.getForecastDepth()*24
+        for (i in 0..depth) {
+            forecastRepository.put(ForecastItemDomainModel(
+                id = i.toLong(),
+                time = data.hourly.time[i],
+                temp = data.hourly.temperature2m[i].toInt(),
+                tempMin = data.daily.temperature2mMin[i/24].toInt(),
+                tempMax = data.daily.temperature2mMax[i/24].toInt(),
+                humidity = data.hourly.relativehumidity2m[i],
+                pressure = data.hourly.surfacePressure[i].toInt(),
+                sunset = data.daily.sunset[i/24],
+                sunrise = data.daily.sunrise[i/24],
+                weatherType = selectWeatherType(data.hourly.weathercode[i]),
+                windSpd = selectWindIcon(data.hourly.winddirection10m[i].toFloat()),
+                windDir = data.hourly.winddirection10m[i],
+                weatherIcon = selectWeatherIcon(data.hourly.weathercode[i], data.hourly.time[i])
+            ))
         }
-        forecastRepository.save(forecast)
     }
 
     private fun selectWeatherIcon(weatherCode: Int, date: Long) : Int {
@@ -221,4 +156,5 @@ class NetworkRefresh(
             else -> "Aliens invasion!"
         }
     }
+
 }
