@@ -1,4 +1,4 @@
-package app.seals.weather.app.bootstrap
+package app.seals.weather.domain.usecases.bootstrap
 
 import android.Manifest
 import android.app.Activity

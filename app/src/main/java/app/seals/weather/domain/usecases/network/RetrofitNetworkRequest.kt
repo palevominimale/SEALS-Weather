@@ -1,6 +1,7 @@
-package app.seals.weather.network
+package app.seals.weather.domain.usecases.network
 
 import android.util.Log
+import app.seals.weather.network.interfaces.RetrofitApiInterface
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

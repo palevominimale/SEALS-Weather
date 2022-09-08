@@ -1,4 +1,4 @@
-package app.seals.weather.app.location
+package app.seals.weather.domain.usecases.location
 
 import android.location.Location
 import android.location.LocationManager

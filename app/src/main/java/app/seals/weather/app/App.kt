@@ -1,7 +1,7 @@
 package app.seals.weather.app
 
 import android.app.Application
-import app.seals.weather.app.automation.SetRefreshWorker
+import app.seals.weather.domain.usecases.automation.SetRefreshWorker
 import app.seals.weather.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

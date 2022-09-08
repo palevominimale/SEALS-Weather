@@ -2,13 +2,13 @@ package app.seals.weather.domain.usecases.forecast
 
 import app.seals.weather.R
 import app.seals.weather.data.models.ForecastItemDomainModel
-import app.seals.weather.data.room.ForecastRepositoryDAO
+import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
-import app.seals.weather.network.RetrofitNetworkRefresh
+import app.seals.weather.domain.usecases.network.RetrofitNetworkRefresh
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
-class RefreshForecastUseCase (
+class RefreshForecast (
     private val retrofit: RetrofitNetworkRefresh,
     private val settingsRepository: SettingsRepositoryInterface,
     private val forecastRepository: ForecastRepositoryDAO

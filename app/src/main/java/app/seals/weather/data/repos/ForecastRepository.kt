@@ -3,7 +3,7 @@ package app.seals.weather.data.repos
 import android.content.Context
 import app.seals.weather.data.models.ForecastItemDomainModel
 import app.seals.weather.data.room.RoomDB
-import app.seals.weather.data.room.ForecastRepositoryDAO
+import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 
 class ForecastRepository(context: Context) : ForecastRepositoryDAO {
 

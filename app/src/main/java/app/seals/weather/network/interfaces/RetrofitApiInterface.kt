@@ -1,4 +1,4 @@
-package app.seals.weather.network
+package app.seals.weather.network.interfaces
 
 import com.google.gson.JsonObject
 import retrofit2.http.GET

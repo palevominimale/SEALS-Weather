@@ -1,4 +1,4 @@
-package app.seals.weather.network
+package app.seals.weather.domain.usecases.network
 
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.network.pojo.BasePOJO
@@ -20,7 +20,8 @@ class RetrofitNetworkRefresh(
         val dateStartFormatted = dateStart.format(format).toString()
         val dateEndFormatted = dateEnd.format(format).toString()
         val timeZone = ZoneId.systemDefault().id
-        return Gson().fromJson(RetrofitNetworkRequest.retrofit.getForecast(
+        return Gson().fromJson(
+            RetrofitNetworkRequest.retrofit.getForecast(
             lat = location.latitude,
             lon = location.longitude,
             timezone = timeZone,

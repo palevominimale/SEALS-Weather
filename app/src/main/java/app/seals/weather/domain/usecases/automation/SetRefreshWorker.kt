@@ -1,4 +1,4 @@
-package app.seals.weather.app.automation
+package app.seals.weather.domain.usecases.automation
 
 import android.content.Context
 import androidx.work.PeriodicWorkRequest

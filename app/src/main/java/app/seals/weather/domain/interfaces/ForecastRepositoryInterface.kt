@@ -1,4 +1,4 @@
-package app.seals.weather.data.room
+package app.seals.weather.domain.interfaces
 
 import androidx.room.*
 import app.seals.weather.data.models.ForecastItemDomainModel

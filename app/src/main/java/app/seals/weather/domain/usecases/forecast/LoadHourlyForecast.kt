@@ -2,10 +2,10 @@ package app.seals.weather.domain.usecases.forecast
 
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.data.models.ForecastItemDomainModel
-import app.seals.weather.data.room.ForecastRepositoryDAO
+import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import java.time.LocalDateTime
 
-class LoadHourlyForecastUseCase(
+class LoadHourlyForecast(
     private val forecastRepository: ForecastRepositoryDAO,
     private val settingsRepository: SettingsRepositoryInterface
     ) {

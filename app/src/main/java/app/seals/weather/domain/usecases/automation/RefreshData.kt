@@ -1,4 +1,4 @@
-package app.seals.weather.app.automation
+package app.seals.weather.domain.usecases.automation
 
 import android.app.PendingIntent
 import android.content.Context
@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import app.seals.weather.R
-import app.seals.weather.domain.usecases.forecast.RefreshForecastUseCase
+import app.seals.weather.domain.usecases.forecast.RefreshForecast
 import app.seals.weather.widget.WidgetRefresh
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +20,7 @@ class RefreshData(
     parameters: WorkerParameters
 ) : Worker(context, parameters) {
 
-    private val retrofitNetworkRefresh: RefreshForecastUseCase by inject(RefreshForecastUseCase::class.java)
+    private val retrofitNetworkRefresh: RefreshForecast by inject(RefreshForecast::class.java)
     private val widgetRefresh : WidgetRefresh by inject(WidgetRefresh::class.java)
 
     override fun doWork(): Result {

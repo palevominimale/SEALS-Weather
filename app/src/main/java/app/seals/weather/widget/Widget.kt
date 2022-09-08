@@ -13,7 +13,7 @@ import android.util.Log
 import android.widget.RemoteViews
 import app.seals.weather.R
 import app.seals.weather.data.models.ForecastItemDomainModel
-import app.seals.weather.data.room.ForecastRepositoryDAO
+import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import java.time.LocalDateTime
 import org.koin.java.KoinJavaComponent.inject
 

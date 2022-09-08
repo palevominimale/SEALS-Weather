@@ -8,13 +8,13 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.seals.weather.R
-import app.seals.weather.app.location.UpdateLocation
+import app.seals.weather.domain.usecases.location.UpdateLocation
 import app.seals.weather.data.models.ForecastItemDomainModel
-import app.seals.weather.data.room.ForecastRepositoryDAO
+import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
-import app.seals.weather.domain.usecases.forecast.LoadDailyForecastUseCase
-import app.seals.weather.domain.usecases.forecast.LoadHourlyForecastUseCase
-import app.seals.weather.domain.usecases.forecast.RefreshForecastUseCase
+import app.seals.weather.domain.usecases.forecast.LoadDailyForecast
+import app.seals.weather.domain.usecases.forecast.LoadHourlyForecast
+import app.seals.weather.domain.usecases.forecast.RefreshForecast
 import app.seals.weather.widget.WidgetRefresh
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,12 +43,12 @@ class SharedViewModel(
     val forecastCurrentLive by lazy { MutableLiveData(forecastCurrent) }
     val isRefreshingLive by lazy { MutableLiveData(isRefreshing) }
 
-    private val loadDailyForecastUseCase : LoadDailyForecastUseCase
-        by inject(LoadDailyForecastUseCase::class.java)
-    private val loadHourlyForecastUseCase : LoadHourlyForecastUseCase
-        by inject(LoadHourlyForecastUseCase::class.java)
-    private val retrofit : RefreshForecastUseCase
-        by inject(RefreshForecastUseCase::class.java)
+    private val loadDailyForecast : LoadDailyForecast
+        by inject(LoadDailyForecast::class.java)
+    private val loadHourlyForecast : LoadHourlyForecast
+        by inject(LoadHourlyForecast::class.java)
+    private val retrofit : RefreshForecast
+        by inject(RefreshForecast::class.java)
 
     init {
         loadCurrent()
@@ -104,7 +104,7 @@ class SharedViewModel(
     private fun loadHourly() {
         CoroutineScope(Dispatchers.IO).launch {
             forecastHourly.clear()
-            forecastHourly.addAll(loadHourlyForecastUseCase.execute())
+            forecastHourly.addAll(loadHourlyForecast.execute())
         }.invokeOnCompletion {
             MainScope().launch {
                 forecastHourlyLive.postValue(forecastHourly)
@@ -115,7 +115,7 @@ class SharedViewModel(
     private fun loadDaily() {
         CoroutineScope(Dispatchers.IO).launch {
             forecastDaily.clear()
-            forecastDaily.addAll(loadDailyForecastUseCase.execute())
+            forecastDaily.addAll(loadDailyForecast.execute())
         }.invokeOnCompletion {
             MainScope().launch {
                 forecastDailyLive.postValue(forecastDaily)

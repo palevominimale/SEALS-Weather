@@ -1,7 +1,7 @@
 package app.seals.weather.di
 
-import app.seals.weather.domain.usecases.forecast.RefreshForecastUseCase
-import app.seals.weather.network.RetrofitNetworkRefresh
+import app.seals.weather.domain.usecases.forecast.RefreshForecast
+import app.seals.weather.domain.usecases.network.RetrofitNetworkRefresh
 import org.koin.dsl.module
 
 val retrofitDi = module {
@@ -9,7 +9,7 @@ val retrofitDi = module {
         RetrofitNetworkRefresh(settingsRepository = get())
     }
     single {
-        RefreshForecastUseCase(
+        RefreshForecast(
             retrofit = get(),
             settingsRepository = get(),
             forecastRepository = get()
