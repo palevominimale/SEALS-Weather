@@ -13,7 +13,5 @@ Used technologies and practices:
 - Shared preferences
 - Coroutines
 - Permissions
-- Last location
-- Geocoder
 </br>
 This is totally refactored app SEALS Weather.
