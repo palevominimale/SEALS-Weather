@@ -16,7 +16,6 @@ import app.seals.weather.domain.usecases.forecast.LoadHourlyForecast
 import app.seals.weather.domain.usecases.forecast.RefreshForecast
 import app.seals.weather.widget.WidgetRefresh
 import kotlinx.coroutines.*
-import org.koin.java.KoinJavaComponent.inject
 import java.time.LocalDateTime
 
 class SharedViewModel(
@@ -24,26 +23,21 @@ class SharedViewModel(
     private val settingsRepository: SettingsRepositoryInterface,
     private val updateLocation: UpdateLocation,
     private val widgetRefresh: WidgetRefresh,
+    private val loadDailyForecast : LoadDailyForecast,
+    private val loadHourlyForecast : LoadHourlyForecast,
+    private val retrofit : RefreshForecast,
     context: Context
 ) : ViewModel() {
 
     private var forecastHourly = mutableListOf<ForecastItemDataModel>()
     private var forecastDaily = mutableListOf<ForecastItemDataModel>()
     private var forecastCurrent = ForecastItemDataModel()
-    private val filter = IntentFilter(context.getString(R.string.intent_refreshing))
     var location = settingsRepository.getLocation()
 
     val forecastHourlyLive by lazy { MutableLiveData(forecastHourly) }
     val forecastDailyLive by lazy { MutableLiveData(forecastDaily) }
     val forecastCurrentLive by lazy { MutableLiveData(forecastCurrent) }
     val isRefreshingLive by lazy { MutableLiveData(false) }
-
-    private val loadDailyForecast : LoadDailyForecast
-        by inject(LoadDailyForecast::class.java)
-    private val loadHourlyForecast : LoadHourlyForecast
-        by inject(LoadHourlyForecast::class.java)
-    private val retrofit : RefreshForecast
-        by inject(RefreshForecast::class.java)
 
     init {
         loadCurrent()
@@ -64,6 +58,7 @@ class SharedViewModel(
                 }
             }
         }
+        val filter = IntentFilter(context.getString(R.string.intent_refreshing))
         context.registerReceiver(receiver, filter)
     }
 
@@ -78,11 +73,11 @@ class SharedViewModel(
                         loadDaily()
                         loadCurrent()
                         isRefreshingLive.postValue(false)
+                    }
                 }
             }
         }
     }
-}
 
     private fun loadCurrent() {
         location = settingsRepository.getLocation()
