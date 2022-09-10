@@ -17,7 +17,6 @@ import app.seals.weather.domain.usecases.forecast.RefreshForecast
 import app.seals.weather.widget.WidgetRefresh
 import kotlinx.coroutines.*
 import java.time.LocalDateTime
-import java.util.*
 
 class SharedViewModel(
     private val forecastRepository: ForecastRepositoryDAO,
