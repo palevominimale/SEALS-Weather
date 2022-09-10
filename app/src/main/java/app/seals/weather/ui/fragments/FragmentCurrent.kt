@@ -65,10 +65,11 @@ class FragmentCurrent : Fragment() {
                     vm.location.latitude,
                     vm.location.longitude,
                     1
-                )[0].locality
+                )[0].locality ?: "null"
             } catch (e: Exception) {
                 Log.e("EXC", e.toString())
             }
+
             val sunset = Instant.ofEpochSecond(sunset ?: 0L).atZone(ZoneId.systemDefault())
             val sunrise = Instant.ofEpochSecond(sunrise ?: 0L).atZone(ZoneId.systemDefault())
             currentCity.text = city
@@ -84,6 +85,7 @@ class FragmentCurrent : Fragment() {
             currentWindSpd.setImageResource(windSpd ?: R.drawable.wi_wind_beaufort_0)
             currentWindDir.setImageResource((R.drawable.ic_wi_wind_deg))
             currentWindDir.rotation = windDir?.toFloat() ?: 0.0F
+            Log.e("CUR", "$windSpd")
         }
     }
 }

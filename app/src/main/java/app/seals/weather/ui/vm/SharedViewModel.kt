@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.seals.weather.R
@@ -16,10 +15,7 @@ import app.seals.weather.domain.usecases.forecast.LoadDailyForecast
 import app.seals.weather.domain.usecases.forecast.LoadHourlyForecast
 import app.seals.weather.domain.usecases.forecast.RefreshForecast
 import app.seals.weather.widget.WidgetRefresh
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.koin.java.KoinJavaComponent.inject
 import java.time.LocalDateTime
 
@@ -62,7 +58,6 @@ class SharedViewModel(
             override fun onReceive(context: Context, intent: Intent) {
                 isRefreshing = intent.getBooleanExtra("isRefreshing", false)
                 isRefreshingLive.postValue(isRefreshing)
-                Log.e("INTENT", "$intent ${intent.extras} ${intent.hashCode()}")
             }
         }
         context.registerReceiver(receiver, filter)

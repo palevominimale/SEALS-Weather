@@ -6,7 +6,6 @@ import androidx.viewpager.widget.ViewPager
 import app.seals.weather.R
 import app.seals.weather.domain.usecases.bootstrap.CheckData
 import app.seals.weather.domain.usecases.bootstrap.CheckPermissions
-import app.seals.weather.domain.usecases.location.UpdateLocation
 import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.domain.usecases.forecast.RefreshForecast
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         val forecastRepository by inject<ForecastRepositoryDAO>()
         val retrofitNetworkRefresh by inject<RefreshForecast>()
-        val updateLocation by inject<UpdateLocation>()
         val settingsRepository by inject<SettingsRepositoryInterface>()
 
         val checkPermissions = CheckPermissions(
@@ -30,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         checkPermissions.execute()
         setContentView(R.layout.activity_main)
-        updateLocation.execute()
         CheckData(forecastRepository, retrofitNetworkRefresh, settingsRepository).execute()
+
         val sectionsPagerAdapter = MainSectionPagerAdapter(this, supportFragmentManager )
         val viewPager = findViewById<ViewPager>(R.id.viewPager).apply {
             adapter = sectionsPagerAdapter

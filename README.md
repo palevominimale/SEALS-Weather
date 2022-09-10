@@ -2,7 +2,7 @@
 Weather app.</br>
 
 Used technologies and practices:
-- Сlean architecture style
+- Clean architecture style
 - MVVM
 - RoomDB
 - LiveData
