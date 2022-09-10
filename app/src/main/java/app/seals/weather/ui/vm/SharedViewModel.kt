@@ -30,14 +30,13 @@ class SharedViewModel(
     private var forecastHourly = mutableListOf<ForecastItemDataModel>()
     private var forecastDaily = mutableListOf<ForecastItemDataModel>()
     private var forecastCurrent = ForecastItemDataModel()
-    private var isRefreshing = false
     private val filter = IntentFilter(context.getString(R.string.intent_refreshing))
     var location = settingsRepository.getLocation()
 
     val forecastHourlyLive by lazy { MutableLiveData(forecastHourly) }
     val forecastDailyLive by lazy { MutableLiveData(forecastDaily) }
     val forecastCurrentLive by lazy { MutableLiveData(forecastCurrent) }
-    val isRefreshingLive by lazy { MutableLiveData(isRefreshing) }
+    val isRefreshingLive by lazy { MutableLiveData(false) }
 
     private val loadDailyForecast : LoadDailyForecast
         by inject(LoadDailyForecast::class.java)
@@ -56,31 +55,30 @@ class SharedViewModel(
     private fun setIntentListener(context: Context) {
         val receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
-                isRefreshing = intent.getBooleanExtra("isRefreshing", false)
-                isRefreshingLive.postValue(isRefreshing)
+                isRefreshingLive.postValue(
+                    intent.getBooleanExtra("isRefreshing", false)
+                )
             }
         }
         context.registerReceiver(receiver, filter)
     }
 
     fun refresh() {
-        if (!isRefreshing) {
-            isRefreshing = true
-            isRefreshingLive.postValue(isRefreshing)
-            CoroutineScope(Dispatchers.IO).launch {
-                updateLocation.execute()
-                retrofit.execute()
-            }.invokeOnCompletion {
-                widgetRefresh.execute()
-                MainScope().launch {
-                    location = settingsRepository.getLocation()
-                    loadHourly()
-                    loadDaily()
-                    loadCurrent()
-                }
-                isRefreshing = false
-                isRefreshingLive.postValue(isRefreshing)
+        isRefreshingLive.postValue(true)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            updateLocation.execute()
+            retrofit.execute()
+        }.invokeOnCompletion {
+            widgetRefresh.execute()
+            location = settingsRepository.getLocation()
+            MainScope().launch {
+                loadHourly()
+                loadDaily()
+                loadCurrent()
             }
+
+            isRefreshingLive.postValue(false)
         }
     }
 
