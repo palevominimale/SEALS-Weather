@@ -14,6 +14,11 @@ class RefreshForecast (
     private val forecastRepository: ForecastRepositoryDAO
         ) {
 
+    suspend fun setOnSuccessListener(function: () -> Unit) {
+        execute()
+        function()
+    }
+
     suspend fun execute() {
         val data = retrofit.execute()
         forecastRepository.clear()

@@ -55,9 +55,13 @@ class SharedViewModel(
     private fun setIntentListener(context: Context) {
         val receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
-                isRefreshingLive.postValue(
-                    intent.getBooleanExtra("isRefreshing", false)
-                )
+                val state = intent.getBooleanExtra("isRefreshing", false)
+                isRefreshingLive.postValue(state)
+                if(!state) {
+                    loadCurrent()
+                    loadHourly()
+                    loadDaily()
+                }
             }
         }
         context.registerReceiver(receiver, filter)
@@ -65,24 +69,23 @@ class SharedViewModel(
 
     fun refresh() {
         isRefreshingLive.postValue(true)
-
-        CoroutineScope(Dispatchers.IO).launch {
-            updateLocation.execute()
-            retrofit.execute()
-        }.invokeOnCompletion {
-            widgetRefresh.execute()
-            location = settingsRepository.getLocation()
-            MainScope().launch {
-                loadHourly()
-                loadDaily()
-                loadCurrent()
+        updateLocation.setOnSuccessListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                retrofit.setOnSuccessListener {
+                    widgetRefresh.execute()
+                    MainScope().launch {
+                        loadHourly()
+                        loadDaily()
+                        loadCurrent()
+                        isRefreshingLive.postValue(false)
+                }
             }
-
-            isRefreshingLive.postValue(false)
         }
     }
+}
 
     private fun loadCurrent() {
+        location = settingsRepository.getLocation()
         CoroutineScope(Dispatchers.IO).launch {
             val now = LocalDateTime.now().hour.toLong()
             forecastCurrent = forecastRepository.getById(now) ?: ForecastItemDataModel()

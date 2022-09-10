@@ -1,5 +1,6 @@
 package app.seals.weather.domain.usecases.network
 
+import android.util.Log
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.network.pojo.BasePOJO
 import com.google.gson.Gson
