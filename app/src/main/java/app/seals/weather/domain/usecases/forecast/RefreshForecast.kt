@@ -1,7 +1,7 @@
 package app.seals.weather.domain.usecases.forecast
 
 import app.seals.weather.R
-import app.seals.weather.data.models.ForecastItemDomainModel
+import app.seals.weather.data.models.ForecastItemDataModel
 import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.domain.usecases.network.RetrofitNetworkRefresh
@@ -19,7 +19,7 @@ class RefreshForecast (
         forecastRepository.clear()
         val depth = settingsRepository.getForecastDepth()*24
         for (i in 0..depth) {
-            forecastRepository.put(ForecastItemDomainModel(
+            forecastRepository.put(ForecastItemDataModel(
                 id = i.toLong(),
                 time = data.hourly.time[i],
                 temp = data.hourly.temperature2m[i].toInt(),
@@ -30,7 +30,7 @@ class RefreshForecast (
                 sunset = data.daily.sunset[i/24],
                 sunrise = data.daily.sunrise[i/24],
                 weatherType = selectWeatherType(data.hourly.weathercode[i]),
-                windSpd = selectWindIcon(data.hourly.winddirection10m[i].toFloat()),
+                windSpd = selectWindIcon(data.hourly.winddirection10m[i]),
                 windDir = data.hourly.winddirection10m[i],
                 weatherIcon = selectWeatherIcon(data.hourly.weathercode[i], data.hourly.time[i])
             ))
@@ -105,7 +105,7 @@ class RefreshForecast (
         }
     }
 
-    private fun selectWindIcon(windIntensity: Float): Int {
+    private fun selectWindIcon(windIntensity: Double): Int {
         return when(windIntensity) {
             in 0.0..0.99 -> R.drawable.wi_wind_beaufort_0
             in 1.0..1.99 -> R.drawable.wi_wind_beaufort_1

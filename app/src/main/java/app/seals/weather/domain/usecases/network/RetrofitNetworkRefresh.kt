@@ -3,6 +3,8 @@ package app.seals.weather.domain.usecases.network
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.network.pojo.BasePOJO
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -11,7 +13,7 @@ class RetrofitNetworkRefresh(
     private val settingsRepository: SettingsRepositoryInterface
 ) {
     suspend fun execute() : BasePOJO {
-
+        CoroutineScope(Dispatchers.IO)
         val location = settingsRepository.getLocation()
         val depth = settingsRepository.getForecastDepth() * 24L
         val format = DateTimeFormatter.ofPattern("yyyy-MM-dd")

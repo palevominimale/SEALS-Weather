@@ -13,4 +13,5 @@ interface SettingsRepositoryInterface {
     fun setLocationDisallowed()
     fun getLocationUsageStatus() : Boolean
     fun getForecastDepth() : Int
+    fun getFirstStart() : Boolean
 }

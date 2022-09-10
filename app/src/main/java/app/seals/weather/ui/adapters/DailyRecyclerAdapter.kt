@@ -8,11 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import app.seals.weather.R
-import app.seals.weather.data.models.ForecastItemDomainModel
+import app.seals.weather.data.models.ForecastItemDataModel
 import java.time.Instant
 import java.time.ZoneId
 
-class DailyRecyclerAdapter(private val forecastDaily: MutableList<ForecastItemDomainModel>) :
+class DailyRecyclerAdapter(private val forecastDaily: MutableList<ForecastItemDataModel>) :
     RecyclerView.Adapter<DailyRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -47,10 +47,10 @@ class DailyRecyclerAdapter(private val forecastDaily: MutableList<ForecastItemDo
             holder.rvDayOfWeek.text = date.dayOfWeek.toString().subSequence(0,3)
             holder.rvDate.text = date.toString().replace('-', '.').subSequence(5,10)
             holder.rvWeatherType.text = weatherType
-            holder.rvWeatherIcon.setImageResource(weatherIcon)
-            holder.rvWindSpd.setImageResource(windSpd)
+            holder.rvWeatherIcon.setImageResource(weatherIcon ?: R.drawable.wi_meteor)
+            holder.rvWindSpd.setImageResource(windSpd ?: R.drawable.wi_wind_beaufort_0)
             holder.rvWindDir.setImageResource(R.drawable.ic_wi_wind_deg)
-            holder.rvWindDir.rotation = windDir.toFloat()
+            holder.rvWindDir.rotation = windDir?.toFloat() ?: 0.0F
         }
     }
 

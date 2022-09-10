@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.seals.weather.R
 import app.seals.weather.domain.usecases.location.UpdateLocation
-import app.seals.weather.data.models.ForecastItemDomainModel
+import app.seals.weather.data.models.ForecastItemDataModel
 import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 import app.seals.weather.domain.usecases.forecast.LoadDailyForecast
@@ -31,9 +31,9 @@ class SharedViewModel(
     context: Context
 ) : ViewModel() {
 
-    private var forecastHourly = mutableListOf<ForecastItemDomainModel>()
-    private var forecastDaily = mutableListOf<ForecastItemDomainModel>()
-    private var forecastCurrent = ForecastItemDomainModel()
+    private var forecastHourly = mutableListOf<ForecastItemDataModel>()
+    private var forecastDaily = mutableListOf<ForecastItemDataModel>()
+    private var forecastCurrent = ForecastItemDataModel()
     private var isRefreshing = false
     private val filter = IntentFilter(context.getString(R.string.intent_refreshing))
     var location = settingsRepository.getLocation()
@@ -74,7 +74,6 @@ class SharedViewModel(
             isRefreshingLive.postValue(isRefreshing)
             CoroutineScope(Dispatchers.IO).launch {
                 updateLocation.execute()
-//                network.execute()
                 retrofit.execute()
             }.invokeOnCompletion {
                 widgetRefresh.execute()
@@ -93,7 +92,7 @@ class SharedViewModel(
     private fun loadCurrent() {
         CoroutineScope(Dispatchers.IO).launch {
             val now = LocalDateTime.now().hour.toLong()
-            forecastCurrent = forecastRepository.getById(now) ?: ForecastItemDomainModel()
+            forecastCurrent = forecastRepository.getById(now) ?: ForecastItemDataModel()
         }.invokeOnCompletion {
             MainScope().launch {
                 forecastCurrentLive.postValue(forecastCurrent)

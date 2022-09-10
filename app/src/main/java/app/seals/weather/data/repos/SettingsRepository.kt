@@ -3,6 +3,7 @@ package app.seals.weather.data.repos
 import android.content.Context
 import android.location.Location
 import android.location.LocationManager
+import android.util.Log
 import app.seals.weather.data.models.SettingsDataModel
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 
@@ -15,6 +16,7 @@ private const val F_DEPTH = "forecastDepth"
 private const val HOUR = "hourOfInterest"
 private const val L_ALLOW = "isLocationAllowed"
 private const val L_USE = "useLocation"
+private const val FIRST_START = "firstStart"
 
 class SettingsRepository(context: Context) : SettingsRepositoryInterface {
 
@@ -29,7 +31,8 @@ class SettingsRepository(context: Context) : SettingsRepositoryInterface {
             forecastDepth = prefs.getInt(F_DEPTH, 7),
             hourOfInterest = prefs.getInt(HOUR, 15),
             isLocationAllowed = prefs.getBoolean(L_ALLOW, false),
-            useLocation = prefs.getBoolean(L_USE, false)
+            useLocation = prefs.getBoolean(L_USE, false),
+            firstStart = prefs.getBoolean(FIRST_START, false)
         )
     }
 
@@ -43,6 +46,7 @@ class SettingsRepository(context: Context) : SettingsRepositoryInterface {
             putInt(HOUR, settings.hourOfInterest)
             putBoolean(L_ALLOW, settings.isLocationAllowed)
             putBoolean(L_USE, settings.useLocation)
+            putBoolean(FIRST_START, settings.firstStart)
         }.apply()
     }
 
@@ -55,9 +59,10 @@ class SettingsRepository(context: Context) : SettingsRepositoryInterface {
 
     override fun setLocation(location: Location) {
         prefs.edit().apply {
+            Log.e("LOC_PR", "${location.latitude} ${location.longitude}")
             putFloat(LAT, location.latitude.toFloat())
             putFloat(LON, location.longitude.toFloat())
-        }
+        }.apply()
     }
 
     override fun getLocationUsageStatus() : Boolean {
@@ -65,14 +70,18 @@ class SettingsRepository(context: Context) : SettingsRepositoryInterface {
     }
 
     override fun setLocationAllowed() {
-        prefs.edit().putBoolean(L_USE, true)
+        prefs.edit().putBoolean(L_USE, true).apply()
     }
 
     override fun setLocationDisallowed() {
-        prefs.edit().putBoolean(L_USE, false)
+        prefs.edit().putBoolean(L_USE, false).apply()
     }
 
     override fun getForecastDepth(): Int {
         return prefs.getInt(F_DEPTH, 7)
+    }
+
+    override fun getFirstStart(): Boolean {
+        return prefs.getBoolean(FIRST_START, true)
     }
 }

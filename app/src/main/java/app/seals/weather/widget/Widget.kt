@@ -12,7 +12,7 @@ import android.graphics.Canvas
 import android.util.Log
 import android.widget.RemoteViews
 import app.seals.weather.R
-import app.seals.weather.data.models.ForecastItemDomainModel
+import app.seals.weather.data.models.ForecastItemDataModel
 import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import java.time.LocalDateTime
 import org.koin.java.KoinJavaComponent.inject
@@ -41,7 +41,7 @@ class WeatherWidget : AppWidgetProvider() {
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetId: Int ){
-        val empty = ForecastItemDomainModel()
+        val empty = ForecastItemDataModel()
         val now = LocalDateTime.now().hour
         val views = RemoteViews(context.packageName, R.layout.weather_widget)
         val intent = Intent(context, WeatherWidget::class.java)
@@ -56,49 +56,49 @@ class WeatherWidget : AppWidgetProvider() {
             val bmpOriginal: Bitmap = BitmapFactory.decodeResource(context.applicationContext.resources, R.drawable.winddir)
             val bmpResult = Bitmap.createBitmap(bmpOriginal.width, bmpOriginal.height, Bitmap.Config.ARGB_8888)
             val tempCanvas = Canvas(bmpResult)
-            tempCanvas.rotate(windDir.toFloat(), bmpOriginal.width / 2.0F, bmpOriginal.height / 2.0F)
+            tempCanvas.rotate(windDir?.toFloat() ?: 0.0F, bmpOriginal.width / 2.0F, bmpOriginal.height / 2.0F)
             tempCanvas.drawBitmap(bmpOriginal, 0F, 0F, null)
             views.setTextViewText(R.id.humidityWidget, "RH: ${(humidity ?: 0).toInt()}%")
             views.setTextViewText(R.id.pressureWidget, "$pressure hPa")
             views.setTextViewText(R.id.tempWidget, "${temp}°C")
             views.setTextViewText(R.id.widgetWeatherType, weatherType)
-            views.setImageViewResource(R.id.widgetWeatherIcon, weatherIcon)
-            views.setImageViewResource(R.id.widgetWindSpd, windSpd)
+            views.setImageViewResource(R.id.widgetWeatherIcon, weatherIcon ?: R.drawable.wi_meteor)
+            views.setImageViewResource(R.id.widgetWindSpd, windSpd ?: R.drawable.wi_wind_beaufort_0)
             views.setImageViewResource(R.id.widgetRefresh, R.drawable.wi_refresh)
 
             views.setImageViewBitmap(R.id.widgetWindDir, bmpResult)
         }
         (forecastRepository.getById(now+1L) ?: empty).run {
             views.setTextViewText(R.id.wlTemp, "${temp}°C")
-            views.setImageViewResource(R.id.wlIcon, weatherIcon)
+            views.setImageViewResource(R.id.wlIcon, weatherIcon ?: R.drawable.wi_meteor)
         }
         (forecastRepository.getById(now+2L) ?: empty).run {
             views.setTextViewText(R.id.wlTemp1, "${temp}°C")
-            views.setImageViewResource(R.id.wlIcon1, weatherIcon)
+            views.setImageViewResource(R.id.wlIcon1, weatherIcon ?: R.drawable.wi_meteor)
         }
         (forecastRepository.getById(now+3L) ?: empty).run {
             views.setTextViewText(R.id.wlTemp2, "${temp}°C")
-            views.setImageViewResource(R.id.wlIcon2, weatherIcon)
+            views.setImageViewResource(R.id.wlIcon2, weatherIcon ?: R.drawable.wi_meteor)
         }
         (forecastRepository.getById(now+4L) ?: empty).run {
             views.setTextViewText(R.id.wlTemp3, "${temp}°C")
-            views.setImageViewResource(R.id.wlIcon3, weatherIcon)
+            views.setImageViewResource(R.id.wlIcon3, weatherIcon ?: R.drawable.wi_meteor)
         }
         (forecastRepository.getById(now+5L) ?: empty).run {
             views.setTextViewText(R.id.wlTemp4, "${temp}°C")
-            views.setImageViewResource(R.id.wlIcon4, weatherIcon)
+            views.setImageViewResource(R.id.wlIcon4, weatherIcon ?: R.drawable.wi_meteor)
         }
         (forecastRepository.getById(now+6L) ?: empty).run {
             views.setTextViewText(R.id.wlTemp5, "${temp}°C")
-            views.setImageViewResource(R.id.wlIcon5, weatherIcon)
+            views.setImageViewResource(R.id.wlIcon5, weatherIcon ?: R.drawable.wi_meteor)
         }
         (forecastRepository.getById(now+7L) ?: empty).run {
             views.setTextViewText(R.id.wlTemp6, "${temp}°C")
-            views.setImageViewResource(R.id.wlIcon6, weatherIcon)
+            views.setImageViewResource(R.id.wlIcon6, weatherIcon ?: R.drawable.wi_meteor)
         }
         (forecastRepository.getById(now+8L) ?: empty).run {
             views.setTextViewText(R.id.wlTemp7, "${temp}°C")
-            views.setImageViewResource(R.id.wlIcon7, weatherIcon)
+            views.setImageViewResource(R.id.wlIcon7, weatherIcon ?: R.drawable.wi_meteor)
         }
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }

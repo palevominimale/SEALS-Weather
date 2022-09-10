@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         checkPermissions.execute()
         setContentView(R.layout.activity_main)
         updateLocation.execute()
-        CheckData(forecastRepository, retrofitNetworkRefresh).execute()
+        CheckData(forecastRepository, retrofitNetworkRefresh, settingsRepository).execute()
         val sectionsPagerAdapter = MainSectionPagerAdapter(this, supportFragmentManager )
         val viewPager = findViewById<ViewPager>(R.id.viewPager).apply {
             adapter = sectionsPagerAdapter

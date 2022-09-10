@@ -11,7 +11,8 @@ val domainDi = module {
     factory {
         CheckData(
             forecastRepository = get(),
-            retrofitNetworkRefresh = get()
+            retrofitNetworkRefresh = get(),
+            settingsRepository = get()
         )
     }
 

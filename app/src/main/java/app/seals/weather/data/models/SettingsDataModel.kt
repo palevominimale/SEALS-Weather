@@ -7,6 +7,7 @@ class SettingsDataModel (
     val forecastStepWidget: Int = 2,
     val forecastDepth: Int = 7,
     val hourOfInterest: Int = 15,
-    val isLocationAllowed: Boolean = false,
-    val useLocation: Boolean = false
+    val isLocationAllowed: Boolean = true,
+    val useLocation: Boolean = true,
+    val firstStart: Boolean = false
 )
