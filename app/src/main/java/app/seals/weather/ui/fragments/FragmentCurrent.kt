@@ -85,7 +85,6 @@ class FragmentCurrent : Fragment() {
             currentWindSpd.setImageResource(windSpd ?: R.drawable.wi_wind_beaufort_0)
             currentWindDir.setImageResource((R.drawable.ic_wi_wind_deg))
             currentWindDir.rotation = windDir?.toFloat() ?: 0.0F
-            Log.e("CUR", "$windSpd")
         }
     }
 }

@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 
 class WidgetRefresh(private val context: Context) {
 
@@ -16,6 +15,5 @@ class WidgetRefresh(private val context: Context) {
         .getAppWidgetIds(ComponentName(context, WeatherWidget::class.java))
     intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
     PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE).send()
-        Log.e("WRK", "Executed (injected)")
     }
 }

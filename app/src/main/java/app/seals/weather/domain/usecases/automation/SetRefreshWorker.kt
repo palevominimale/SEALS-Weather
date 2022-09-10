@@ -14,5 +14,4 @@ class SetRefreshWorker(private val context: Context) {
             .setInitialDelay(5, TimeUnit.SECONDS).build()
         WorkManager.getInstance(context).enqueue(workRequest)
     }
-
 }

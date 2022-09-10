@@ -9,13 +9,12 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import android.util.Log
 import android.widget.RemoteViews
 import app.seals.weather.R
 import app.seals.weather.data.models.ForecastItemDataModel
 import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
-import java.time.LocalDateTime
 import org.koin.java.KoinJavaComponent.inject
+import java.time.LocalDateTime
 
 class WeatherWidget : AppWidgetProvider() {
 
@@ -28,13 +27,7 @@ class WeatherWidget : AppWidgetProvider() {
     ) {
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
-            Log.e("WDG", "Updated $appWidgetId")
         }
-    }
-
-    override fun onReceive(context: Context?, intent: Intent?) {
-        super.onReceive(context, intent)
-        Log.e("WDG", intent!!.extras.toString())
     }
 
     private fun updateAppWidget(

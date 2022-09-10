@@ -3,7 +3,6 @@ package app.seals.weather.domain.usecases.automation
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import app.seals.weather.R
@@ -43,6 +42,5 @@ class RefreshData(
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT)
             .send()
-        Log.e("INTENT", "$intent ${intent.extras}")
     }
 }
