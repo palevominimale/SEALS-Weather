@@ -21,4 +21,11 @@
     <string name="app_widget_description">Light weather widget by SUPERSEAL</string>
     <string name="tempShort">00°C</string>
     <string name="intent_refreshing">app.weather.intent.REFRESHING</string>
+    <string name="settings_description">Settings button</string>
+    <string name="geo_header">Location preferences</string>
+    <string name="use_location">Use location</string>
+    <string name="location_auto">Auto refresh</string>
+    <string name="location_auto_off">Location will not be refreshed automatically</string>
+    <string name="location_auto_on">Location will be refreshed automatically</string>
+    <string name="clear_locations">Clear locations</string>
 </resources>

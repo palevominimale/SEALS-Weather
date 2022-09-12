@@ -18,7 +18,6 @@
         android:clickable="true"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/temp"
-        android:textColor="@color/white"
         android:textSize="24sp"
         tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
@@ -35,7 +34,6 @@
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
         android:text="@string/weatherType"
-        android:textColor="@color/white"
         android:textSize="16sp"
         tools:ignore="TextContrastCheck" />
 
@@ -88,7 +86,6 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/humidity"
         android:textAlignment="center"
-        android:textColor="@color/white"
         android:textSize="11sp"
         tools:ignore="TextContrastCheck" />
 
@@ -103,7 +100,6 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/pressure"
         android:textAlignment="center"
-        android:textColor="@color/white"
         android:textSize="11sp"
         tools:ignore="TextContrastCheck" />
 
@@ -204,7 +200,6 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center"
             android:text="@string/tempShort"
-            android:textColor="@color/white"
             android:textSize="11sp" />
 
         <TextView
@@ -215,7 +210,6 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center"
             android:text="@string/tempShort"
-            android:textColor="@color/white"
             android:textSize="11sp" />
 
         <TextView
@@ -226,7 +220,6 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center"
             android:text="@string/tempShort"
-            android:textColor="@color/white"
             android:textSize="11sp" />
 
         <TextView
@@ -237,7 +230,6 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center"
             android:text="@string/tempShort"
-            android:textColor="@color/white"
             android:textSize="11sp" />
 
         <TextView
@@ -248,7 +240,6 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center"
             android:text="@string/tempShort"
-            android:textColor="@color/white"
             android:textSize="11sp" />
 
         <TextView
@@ -259,7 +250,6 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center"
             android:text="@string/tempShort"
-            android:textColor="@color/white"
             android:textSize="11sp" />
 
         <TextView
@@ -270,7 +260,6 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center"
             android:text="@string/tempShort"
-            android:textColor="@color/white"
             android:textSize="11sp" />
 
         <TextView
@@ -281,7 +270,6 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center"
             android:text="@string/tempShort"
-            android:textColor="@color/white"
             android:textSize="11sp" />
     </LinearLayout>
 

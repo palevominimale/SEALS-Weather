@@ -3,25 +3,38 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/arrow_back_24px.xml" value="0.2295" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/arrow_back_24px1.xml" value="0.2295" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/arrow_back_48px.xml" value="0.2585" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/build_circle_48px.xml" value="0.2535" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/forecast_item_bg.xml" value="0.29" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2445" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2445" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/main_bg.xml" value="0.2435" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/more_vert_48px.xml" value="0.2535" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/wi_cloud.xml" value="0.2585" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/wi_cloudy_gusts.xml" value="0.2535" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/wi_day_cloudy_windy.xml" value="0.2535" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/wi_wind_beaufort_8.xml" value="0.2535" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/widget_bg.xml" value="0.2445" />
-        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/activity_main.xml" value="0.3578125" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/drawable/widget_list_bg.xml" value="0.2535" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/dialog.xml" value="0.2520833333333333" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item.xml" value="0.67" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item_bg.xml" value="0.2869791666666667" />
-        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item_daily.xml" value="1.1" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item_daily.xml" value="0.33" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/forecast_item_hourly.xml" value="0.5" />
-        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_current.xml" value="0.67" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_current.xml" value="0.5" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_daily.xml" value="0.24791666666666667" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_fragment_current.xml" value="0.5" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_fragment_daily.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_fragment_hourly.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_hourly.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/sample_my_view.xml" value="0.2869791666666667" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/layout/weather_widget.xml" value="0.75" />
         <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2165" />
+        <entry key="..\:/Users/seal/AndroidStudioProjects/SEALS-Weather-CLEAN/app/src/main/res/xml/root_preferences.xml" value="0.33" />
       </map>
     </option>
   </component>

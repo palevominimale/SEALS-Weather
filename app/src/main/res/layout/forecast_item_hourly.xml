@@ -18,7 +18,6 @@
         android:gravity="center"
         android:rotation="-90"
         android:text="@string/dayOfWeek"
-        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +29,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/temp"
-        android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/forecastHourlyItemDayOfWeek"
         app:layout_constraintStart_toEndOf="@+id/forecastHourlyItemDayOfWeek"
@@ -44,7 +42,6 @@
         android:layout_marginBottom="5dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/weatherType"
-        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/forecastHourlyItemWeatherIcon"
@@ -57,7 +54,6 @@
         android:layout_marginStart="10dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/time"
-        android:textColor="@color/transparent_white"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/forecastHourlyItemWeatherIcon"
         app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +65,6 @@
         android:layout_marginEnd="10dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/humidity"
-        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,7 +77,6 @@
         android:layout_marginEnd="10dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/pressure"
-        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forecastHourlyItemHumidity" />

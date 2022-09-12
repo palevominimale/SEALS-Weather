@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="-2dp"
-    android:background="@color/black"
     android:foregroundGravity="center"
     tools:context=".ui.MainActivity">
 
@@ -19,18 +18,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/app_name"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/settingsImageView"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        android:paddingVertical="5dp"
+        android:src="@drawable/more_vert_48px"
+        app:layout_constraintBottom_toBottomOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="@+id/img"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView"
+        android:contentDescription="@string/settings_description" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#20000000"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/settingsImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView"
-        app:tabIndicatorGravity="top"
-        app:tabTextColor="@color/white">
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorGravity="bottom"
+        app:tabIndicatorHeight="2dp">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

@@ -15,7 +15,6 @@
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/temp"
-        android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +26,6 @@
         android:layout_marginStart="2dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/tempMin"
-        android:textColor="@color/tempMin"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +38,6 @@
         android:layout_marginTop="-3dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/city"
-        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currentTemp" />
@@ -51,7 +48,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/humidity"
-        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currentPressure" />
@@ -62,7 +58,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/sunrise"
-        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/currentSunset"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -73,7 +68,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/sunset"
-        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/currentWeatherType"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -84,7 +78,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/pressure"
-        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -97,7 +90,6 @@
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
         android:text="@string/weatherType"
-        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/currentSunsetIcon"
         app:layout_constraintStart_toEndOf="@+id/currentWindSpd"
@@ -110,7 +102,6 @@
         android:layout_marginEnd="2dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/tempMax"
-        android:textColor="@color/tempMax"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/currentTemp"
         app:layout_constraintTop_toTopOf="parent" />

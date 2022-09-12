@@ -9,7 +9,8 @@
     <color name="tempMin">#FF88FFFF</color>
     <color name="tempMax">#FFFF8888</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="transparent_white">#80FFFFFF</color>
+    <color name="white_transparent">#10FFFFFF</color>
+    <color name="black_transparent">#10000000</color>
     <color name="light_blue_400">#FF29B6F6</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>

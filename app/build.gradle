@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.preference:preference:1.2.0'
+
     //Versions
     def retrofit = '2.9.0'
     def koin= '3.2.0'
