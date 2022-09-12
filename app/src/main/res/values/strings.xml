@@ -28,4 +28,9 @@
     <string name="location_auto_off">Location will not be refreshed automatically</string>
     <string name="location_auto_on">Location will be refreshed automatically</string>
     <string name="clear_locations">Clear locations</string>
+    <string name="forecast_depth">Forecast depth, days</string>
+    <string name="forecast_step">Forecast step, hours</string>
+    <string name="hour_of_interest">Hour of interest</string>
+    <string name="hour_of_interest_description">Forecast for this hour will be displayed in Daily tab</string>
+    <string name="forecast_widget_step">Forecast step in widget, hours</string>
 </resources>

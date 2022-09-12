@@ -1,20 +1,52 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory app:title="@string/geo_header">
 
         <SwitchPreferenceCompat
-            app:key="geo"
+            app:key="useLocation"
             app:title="@string/use_location" />
 
-        <SwitchPreferenceCompat
-            app:dependency="geo"
-            app:key="attachment"
-            app:summaryOff="@string/location_auto_off"
-            app:summaryOn="@string/location_auto_on"
-            app:title="@string/location_auto" />
+        <SeekBarPreference
+            app:title="@string/forecast_depth"
+            app:key="forecastDepth"
+            app:adjustable="true"
+            app:defaultValue="7"
+            app:min="1"
+            android:max="14"
+            app:seekBarIncrement="1"
+            app:showSeekBarValue="true" />
 
-        <CheckBoxPreference
-            app:title="@string/clear_locations" />
+        <SeekBarPreference
+            app:title="@string/forecast_step"
+            app:key="forecastStep"
+            app:adjustable="true"
+            app:defaultValue="1"
+            app:min="1"
+            app:seekBarIncrement="1"
+            android:max="5"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreference
+            app:title="@string/forecast_widget_step"
+            app:key="forecastStep"
+            app:adjustable="true"
+            app:defaultValue="2"
+            app:min="1"
+            app:seekBarIncrement="1"
+            android:max="5"
+            app:showSeekBarValue="true"
+            />
+
+        <SeekBarPreference
+            app:title="@string/hour_of_interest"
+            app:key="hourOfInterest"
+            app:summary="@string/hour_of_interest_description"
+            app:adjustable="true"
+            app:defaultValue="15"
+            app:min="0"
+            app:seekBarIncrement="1"
+            android:max="23"
+            app:showSeekBarValue="true" />
 
     </PreferenceCategory>
 

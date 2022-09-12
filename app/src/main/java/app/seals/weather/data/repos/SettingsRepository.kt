@@ -7,7 +7,7 @@ import android.util.Log
 import app.seals.weather.data.models.SettingsDataModel
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
 
-private const val PREFS = "preferences"
+private const val PREFS = "app.seals.weather_preferences"
 private const val LAT = "lat"
 private const val LON = "lon"
 private const val F_STEP = "forecastStep"

@@ -2,15 +2,13 @@ package app.seals.weather.ui
 
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import app.seals.weather.R
-import app.seals.weather.domain.usecases.bootstrap.CheckData
-import app.seals.weather.domain.usecases.bootstrap.CheckPermissions
 import app.seals.weather.domain.interfaces.ForecastRepositoryDAO
 import app.seals.weather.domain.interfaces.SettingsRepositoryInterface
+import app.seals.weather.domain.usecases.bootstrap.CheckData
+import app.seals.weather.domain.usecases.bootstrap.CheckPermissions
 import app.seals.weather.domain.usecases.forecast.RefreshForecast
 import app.seals.weather.ui.adapters.MainSectionPagerAdapter
 import app.seals.weather.ui.fragments.FragmentSettingsDialog
