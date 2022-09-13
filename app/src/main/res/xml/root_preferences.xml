@@ -28,7 +28,7 @@
 
         <SeekBarPreference
             app:title="@string/forecast_widget_step"
-            app:key="forecastStep"
+            app:key="forecastStepWidget"
             app:adjustable="true"
             app:defaultValue="2"
             app:min="1"

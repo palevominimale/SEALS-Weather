@@ -22,7 +22,8 @@ class App: Application() {
                 dataDi,
                 locationDi,
                 widgetDi,
-                retrofitDi))
+                retrofitDi
+            ))
         }
         setRefreshWorker.execute()
     }

@@ -28,12 +28,7 @@ class FragmentSettingsDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val toolbar = view.findViewById<Toolbar>(R.id.settingsToolbar)
         toolbar.setNavigationOnClickListener {
-            saveAll()
             dismiss()
         }
-    }
-
-    private fun saveAll() {
-
     }
 }
