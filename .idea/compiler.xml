@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="SEALS_Weather.app" target="11" />
       <module name="SEALS_Weather.data" target="11" />
+      <module name="SEALS_Weather.widget" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
